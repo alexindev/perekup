@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"backend/inter
+	"backend/internal/models"
 	"database/sql"
 	"errors"
 	"fmt"

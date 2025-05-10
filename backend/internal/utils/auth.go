@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"backend/inte
+	"backend/internal/entity"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"

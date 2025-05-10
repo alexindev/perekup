@@ -7,15 +7,14 @@ import (
 	"database/sql"
 	"fmt"
 
-
 	_ "github.com/lib/pq"
 )
 
 type Store struct {
 	config *config.Config
+	db     *sql.DB
 
-	
-	// Слои репозиториев и сервисов
+	// слои репозиториев и сервисов
 	Repository *repository.Repository
 	Service    *service.Service
 }
@@ -28,9 +27,9 @@ func New(cfg *config.Config) (*Store, error) {
 	err := store.Open()
 	if err != nil {
 		return nil, fmt.Errorf("ошибка подключения к базе данных: %w", err)
+	}
 
-	
-	// Инициализируем слои репозиториев и сервисов
+	// инициализируем слои репозиториев и сервисов
 	store.Repository = repository.New(store.db)
 	store.Service = service.New(store.Repository)
 
@@ -43,7 +42,7 @@ func (s *Store) Open() error {
 		return fmt.Errorf("не удалось открыть соединение с базой данных: %w", err)
 	}
 
-	// Проверяем соединение
+	// проверка соединения
 	err = db.Ping()
 	if err != nil {
 		return fmt.Errorf("не удалось проверить соединение с базой данных: %w", err)

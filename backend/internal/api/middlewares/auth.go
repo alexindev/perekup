@@ -1,7 +1,7 @@
 package middlewares
 
 import (
-	"back
+	"backend/internal/utils"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"log/slog"
