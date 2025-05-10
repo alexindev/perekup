@@ -1,0 +1,4 @@
+.env
+/cmd/bin/*
+/configs/loading.json
+.idea
