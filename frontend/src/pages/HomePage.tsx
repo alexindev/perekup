@@ -24,10 +24,12 @@ export const HomePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Загрузка данных каталога при монтировании компонента
+  // Загрузка данных каталога при монтировании компонента и когда webApp готов
   useEffect(() => {
-    fetchCatalogData();
-  }, []);
+    if (webApp) {
+      fetchCatalogData();
+    }
+  }, [webApp]);
 
   // Загрузка подписок пользователя
   useEffect(() => {
@@ -38,10 +40,12 @@ export const HomePage = () => {
 
   // Функция для загрузки данных каталога
   const fetchCatalogData = async () => {
+    if (!webApp) return;
+    
     setIsLoading(true);
     setError(null);
     try {
-      const data = await CategoryService.getCategories();
+      const data = await CategoryService.getCategories(webApp.initData);
       setCategories(data);
     } catch (err) {
       console.error("Ошибка при загрузке каталога:", err);

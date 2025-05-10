@@ -93,7 +93,7 @@ export const AddItemForm = ({
     setModelsError(null);
 
     try {
-      const data = await ModelService.getModelsByCategory(categoryId);
+      const data = await ModelService.getModelsByCategory(categoryId, webApp.initData);
       setModels(data);
     } catch (err) {
       console.error("Ошибка при загрузке моделей:", err);
@@ -109,7 +109,7 @@ export const AddItemForm = ({
     setSpecsError(null);
 
     try {
-      const data = await SpecService.getSpecsByModel(modelId);
+      const data = await SpecService.getSpecsByModel(modelId, webApp.initData);
       setSpecs(data);
     } catch (err) {
       console.error("Ошибка при загрузке спецификаций:", err);

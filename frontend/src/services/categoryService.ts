@@ -4,8 +4,13 @@ import { Category } from '../types/category.types';
 
 export default class CategoryService {
   // Получить все категории
-  static async getCategories(): Promise<Category[]> {
-    const response = await apiClient.get(API_ENDPOINTS.CATEGORIES.GET_ALL);
+  static async getCategories(initData: string): Promise<Category[]> {
+    const response = await apiClient.get(API_ENDPOINTS.CATEGORIES.GET_ALL, {
+      headers: {
+        'X-Telegram': initData,
+      },
+    });
+    console.log(response.data);
     return response.data;
   }
 };
