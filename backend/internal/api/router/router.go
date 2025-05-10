@@ -33,9 +33,9 @@ func SetupRoutes(r *gin.Engine, c *config.Config, s *store.Store) {
 	}
 
 	api := r.Group("/api")
+	api.Use(middlewares.TgAuthMiddleware(&authMiddlewareOpt))
 	{
 		user := api.Group("/users")
-		user.Use(middlewares.TgAuthMiddleware(&authMiddlewareOpt))
 		{
 			user.GET("/me", h.GetMe)
 			user.PATCH("toggle-bot", h.ToggleBotActive)
@@ -53,7 +53,6 @@ func SetupRoutes(r *gin.Engine, c *config.Config, s *store.Store) {
 			spec.GET("/:modelID", h.GetSpecsByID)
 		}
 		sub := api.Group("/subs")
-		sub.Use(middlewares.TgAuthMiddleware(&authMiddlewareOpt))
 		{
 			sub.GET("", h.GetUserSubs)
 			sub.POST("", h.AddUserSub)
