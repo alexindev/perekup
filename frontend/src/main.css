@@ -1,0 +1,33 @@
+@import './index.css';
+
+:root {
+  --primary-color: #E85B01;
+  --dark-color: #3C3C3C;
+  --light-color: #DFDFDF;
+  --border-color: #CEC4C3;
+  --text-color: #A39594;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light-color);
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+p {
+  color: #777;
+  text-align: center;
+}
+  
