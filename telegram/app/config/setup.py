@@ -24,12 +24,14 @@ class TGConfig(BaseModel):
     BOT_TOKEN: str = getenv("BOT_TOKEN")
     BOT_SESSION: str = getenv("BOT_SESSION")
     USER_BOT_SESSION: str = getenv("USER_BOT_SESSION")
+    WEB_APP_URL: str = getenv("WEB_APP_URL")
 
 
 class DataBaseConfig(BaseModel):
     """Настройки бд"""
 
-    DB_URL: str = getenv("DB_URL", "postgres://postgres:postgres@localhost:5432")
+    DB_URI: str = getenv("DB_URI", "postgres://postgres:postgres@localhost:5432")
+    MEMCACHED_URI: str = getenv("MEMCACHED_URI", "127.0.0.1:11211")
 
 
 class Settings(BaseSettings):
@@ -39,6 +41,7 @@ class Settings(BaseSettings):
     DB: DataBaseConfig = DataBaseConfig()
 
 
+chats = []
 db_logger = logging.getLogger("database")
 app_logger = logging.getLogger("app")
 settings = Settings()
