@@ -8,7 +8,7 @@ from app.config import settings, app_logger as log
 async def get_chat_id():
     """ Получить id групп """
     async with TelegramClient(
-        f'../{settings.TG.USER_BOT_SESSION}',
+        settings.TG.USER_BOT_SESSION,
         api_id=settings.TG.API_ID,
         api_hash=settings.TG.API_HASH,
     ) as client:
