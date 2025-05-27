@@ -11,7 +11,7 @@ from app.config import settings
 
 # Создаем асинхронный движок
 async_engine: AsyncEngine = create_async_engine(
-    url=settings.DB.DB_URL,
+    url=settings.DB.DB_URI,
     echo=False,
     echo_pool=False,
     pool_size=50,
