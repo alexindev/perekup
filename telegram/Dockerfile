@@ -1,27 +1,25 @@
-FROM python:3.12.4-slim
+FROM python:3.12.11-slim
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
+
+WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    ca-certificates \
     libffi-dev \
     libssl-dev \
     build-essential \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
 
-ADD https://astral.sh/uv/install.sh /uv-installer.sh
-RUN sh /uv-installer.sh && rm /uv-installer.sh
-
-ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV PATH="/root/.local/bin:$PATH"
+ENV PYTHONDONTWRITEBYTECODE=1
 
-WORKDIR /app
-
-COPY pyproject.toml /app/
+COPY pyproject.toml uv.lock ./
 
 RUN uv sync
 
-COPY . /app
+COPY . .
 
-CMD ["uv", "run", "-m", "app.main"]
+EXPOSE 8000
+
+CMD ["uv", "run", "python", "-m", "app.main"]

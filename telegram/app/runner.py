@@ -3,13 +3,12 @@ import asyncio
 from telethon import TelegramClient
 
 from app.config.setup import settings, app_logger as log
-from app.handlers.register_handles import handle_register
 from app.clients.memcached_client import memcached_dedup
 from app.clients.llm_client import LLMService
-from app.storage.cache import MessageStorage
 from app.services.notification_service import NotificationService
 from app.services.message_processor import MessageProcessor
-from app.database import close_connect
+from app.storage.cache import MessageStorage
+from app.handlers.register_handles import handle_register
 
 
 class BotRunner:
@@ -60,11 +59,6 @@ class BotRunner:
             await self.message_processor.stop()
         except Exception as e:
             log.error(f"Ошибка остановки message_processor: {e}")
-
-        try:
-            await close_connect()
-        except Exception as e:
-            log.error(f"Ошибка закрытия БД: {e}")
 
         if self.userbot:
             try:

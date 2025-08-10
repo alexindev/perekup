@@ -10,8 +10,8 @@ async def main():
         await run_bots()
     except KeyboardInterrupt:
         log.info("Приложение завершено пользователем")
-    except Exception as e:
-        log.error(f"Критическая ошибка: {e}")
+    except Exception as ex:
+        log.error(f"Критическая ошибка: {ex}")
         raise
 
 

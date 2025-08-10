@@ -3,15 +3,14 @@ name = "perekup"
 version = "0.1.0"
 description = ""
 authors = [{ name = "alex" }]
-requires-python = "~=3.12"
+requires-python = "==3.12.11"
 readme = "README.md"
 dependencies = [
-    "asyncpg>=0.30.0",
-    "pydantic>=2.11.4",
-    "pydantic-settings>=2.9.1",
-    "python-dotenv>=1.1.0",
+    "black>=25.1.0",
+    "pydantic>=2.11.7",
+    "pydantic-settings>=2.10.1",
+    "python-dotenv>=1.1.1",
     "python-memcached>=1.62",
-    "sqlalchemy[asyncio]>=2.0.40",
     "telethon>=1.40.0",
     "tgcrypto>=1.2.5",
 ]
