@@ -1,0 +1,21 @@
+# VCS and IDE
+.git
+.gitignore
+.idea
+.vscode
+.DS_Store
+
+# Build output
+cmd/bin/
+bin/
+dist/
+
+# Go cache
+**/*.test
+
+# Docker
+Dockerfile
+
+# Env files (mount at runtime instead)
+.env
+*.env
